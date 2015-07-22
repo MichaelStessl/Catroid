@@ -71,14 +71,24 @@ public final class ProjectManager implements OnLoadProjectCompleteListener, OnCh
 	private Sprite currentSprite;
 	private UserBrick currentUserBrick;
 	private boolean asynchronTask = true;
+	private boolean faceDetectionFirstRun;
 
 	private FileChecksumContainer fileChecksumContainer = new FileChecksumContainer();
 
 	private ProjectManager() {
+		faceDetectionFirstRun = true;
 	}
 
 	public static ProjectManager getInstance() {
 		return INSTANCE;
+	}
+
+	public void setFaceDetectionFirstRunFalse() {
+		faceDetectionFirstRun = false;
+	}
+
+	public boolean getFaceDetectionFirstRun() {
+		return faceDetectionFirstRun;
 	}
 
 	public void uploadProject(String projectName, FragmentActivity fragmentActivity) {
