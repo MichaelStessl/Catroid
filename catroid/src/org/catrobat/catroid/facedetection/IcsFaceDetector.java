@@ -68,8 +68,10 @@ public class IcsFaceDetector extends FaceDetector implements FaceDetectionListen
 	@Override
 	public void onFaceDetection(Face[] faces, Camera camera) {
 		if (ProjectManager.getInstance().getFaceDetectionFirstRun()) {
-			stopFaceDetection();
-			startFaceDetection();
+            if (running){
+                stopFaceDetection();
+                startFaceDetection();
+            }
 			ProjectManager.getInstance().setFaceDetectionFirstRunFalse();
 		}
 		boolean detected = faces.length > 0;
