@@ -82,6 +82,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class ProjectActivityTest extends BaseActivityInstrumentationTestCase<MainMenuActivity> {
 	private static final String TAG = ProjectActivityTest.class.getSimpleName();
@@ -936,6 +937,9 @@ public class ProjectActivityTest extends BaseActivityInstrumentationTestCase<Mai
 
 		UiTestUtils.openActionMode(solo, delete, R.id.delete, getActivity());
 
+		assertFalse("Helptext TAP ... Watermark is shown but list is not empty!", solo.searchText(Pattern.quote(solo
+				.getString(R.string.fragment_sprite_text_description)), true));
+
 		String selectAll = solo.getString(R.string.select_all).toUpperCase(Locale.getDefault());
 
 		solo.waitForText(solo.getString(R.string.delete));
@@ -959,6 +963,15 @@ public class ProjectActivityTest extends BaseActivityInstrumentationTestCase<Mai
 		assertFalse("Sprite was not Deleted!", solo.waitForText(SECOND_TEST_SPRITE_NAME, 1, 200));
 		assertFalse("Sprite was not Deleted!", solo.waitForText(THIRD_TEST_SPRITE_NAME, 1, 200));
 		assertFalse("Sprite was not Deleted!", solo.waitForText(FOURTH_TEST_SPRITE_NAME, 1, 200));
+
+		assertTrue("Helptext TAP ... Watermark not shown after list empty!", solo.searchText(Pattern.quote(solo
+				.getString(R.string.fragment_sprite_text_description)), true));
+
+		solo.goBack();
+		solo.clickOnText(solo.getString(R.string.main_menu_continue));
+
+		assertTrue("Helptext TAP ... Watermark not shown after list empty!", solo.searchText(Pattern.quote(solo
+				.getString(R.string.fragment_sprite_text_description)), true));
 	}
 
 	public void testItemClick() {

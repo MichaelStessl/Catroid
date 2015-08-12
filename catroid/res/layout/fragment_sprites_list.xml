@@ -21,8 +21,41 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_sprites_list"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ListView
     android:id="@android:id/list"
     style="@style/ListViewShadowed"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/fragment_sprite_text_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="50dp"
+        android:text="@string/sprites"
+        android:textColor="@color/actionbar_title_color"
+        android:textSize="80sp"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/fragment_sprite_text_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:text="@string/fragment_sprite_text_description"
+        android:textColor="@color/actionbar_title_color"
+        android:textSize="30sp"
+        android:visibility="visible"/>
+</LinearLayout>
+
+
+

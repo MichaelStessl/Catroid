@@ -83,6 +83,8 @@ public class ProjectActivity extends BaseActivity {
 		spritesListFragment = (SpritesListFragment) getSupportFragmentManager().findFragmentById(
 				R.id.fragment_sprites_list);
 
+		setHelpTextVisibility();
+
 		SettingsActivity.setLegoMindstormsNXTSensorChooserEnabled(this, true);
 	}
 
@@ -203,5 +205,22 @@ public class ProjectActivity extends BaseActivity {
 		spritesListFragment.setShowDetails(showDetails);
 
 		item.setTitle(showDetails ? R.string.hide_details : R.string.show_details);
+	}
+
+	private void setHelpTextVisibility() {
+		if (spritesListFragment.getSpriteListSize() <= 1) {
+			View emptyListViewHeading = (View) findViewById(R.id.fragment_sprite_text_heading);
+			View emptyListViewDescription = (View) findViewById(R.id.fragment_sprite_text_description);
+
+			emptyListViewDescription.setVisibility(View.VISIBLE);
+			emptyListViewHeading.setVisibility(View.VISIBLE);
+		} else {
+
+			View emptyListViewHeading = (View) findViewById(R.id.fragment_sprite_text_heading);
+			View emptyListViewDescription = (View) findViewById(R.id.fragment_sprite_text_description);
+
+			emptyListViewDescription.setVisibility(View.INVISIBLE);
+			emptyListViewHeading.setVisibility(View.INVISIBLE);
+		}
 	}
 }

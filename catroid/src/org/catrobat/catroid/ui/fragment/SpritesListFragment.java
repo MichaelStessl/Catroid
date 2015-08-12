@@ -122,6 +122,7 @@ public class SpritesListFragment extends SherlockListFragment implements OnSprit
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
 		return inflater.inflate(R.layout.fragment_sprites_list, container);
 	}
 
@@ -473,6 +474,7 @@ public class SpritesListFragment extends SherlockListFragment implements OnSprit
 			public void onClick(DialogInterface dialog, int id) {
 				deleteCheckedSprites();
 				clearCheckedSpritesAndEnableButtons();
+				setHelpTextVisibility();
 			}
 		});
 		builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -753,5 +755,28 @@ public class SpritesListFragment extends SherlockListFragment implements OnSprit
 	@Override
 	public void onLoadProjectFailure() {
 		getActivity().onBackPressed();
+	}
+
+	public int getSpriteListSize() {
+		int size = spriteList.size();
+
+		return size;
+	}
+
+	private void setHelpTextVisibility() {
+		if (getSpriteListSize() <= 1) {
+			View emptyListViewHeading = (View) getView().findViewById(R.id.fragment_sprite_text_heading);
+			View emptyListViewDescription = (View) getView().findViewById(R.id.fragment_sprite_text_description);
+
+			emptyListViewDescription.setVisibility(View.VISIBLE);
+			emptyListViewHeading.setVisibility(View.VISIBLE);
+		} else {
+
+			View emptyListViewHeading = (View) getView().findViewById(R.id.fragment_sprite_text_heading);
+			View emptyListViewDescription = (View) getView().findViewById(R.id.fragment_sprite_text_description);
+
+			emptyListViewDescription.setVisibility(View.INVISIBLE);
+			emptyListViewHeading.setVisibility(View.INVISIBLE);
+		}
 	}
 }
